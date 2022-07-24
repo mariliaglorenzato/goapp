@@ -6,8 +6,13 @@ Simple Go Lang application
 ``` 
 go init . 
 ```
-### To run the project: 
+### To build the project: 
 
 ```
-go run .
+docker build -t golang-api .
+```
+
+### To run the server:
+```
+ docker run -p 8080:8080 -t golang-api
 ```
