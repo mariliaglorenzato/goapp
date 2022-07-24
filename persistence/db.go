@@ -16,12 +16,12 @@ type GormImpl struct {
 func NewGormImpl() *GormImpl {
 	database, err := gorm.Open("sqlite3", "test.db")
 
-	//todo: this should not be here, move as soon as possible
-	database.AutoMigrate(&domain.MovieMaker{})
-
 	if err != nil {
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
+
+	//todo: this should not be here, move as soon as possible
+	database.AutoMigrate(&domain.MovieMaker{})
 
 	return &GormImpl{DB: database}
 }

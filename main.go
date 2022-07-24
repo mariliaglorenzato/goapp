@@ -12,8 +12,11 @@ func main() {
 	//load database
 	GormImpl := persistence.NewGormImpl()
 
+	//load repository
+	repository := persistence.NewRepository(GormImpl.DB)
+
 	//load use cases
-	getMovieMakersUseCase := usecases.NewGetMovieMakersUseCase(GormImpl.DB)
+	getMovieMakersUseCase := usecases.NewGetMovieMakersUseCase(repository)
 
 	//load controllers
 	movieMakersController := controllers.NewMovieMakersController(getMovieMakersUseCase)

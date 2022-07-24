@@ -6,5 +6,5 @@ type MovieMaker struct {
 	ArtistName *string `json:"artist_name"`
 	// BirthDate  time.Time `json: birth_date`
 	// DeathDate  time.Time `json:death_date`
-	ArtWorks []ArtWork `json:"art_works"`
+	// ArtWorks []ArtWork `json:"art_works"`
 }

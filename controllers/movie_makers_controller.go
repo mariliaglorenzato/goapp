@@ -17,6 +17,12 @@ func NewMovieMakersController(getMovieMakersUseCase interfaces.IGetMovieMakersUs
 	}
 }
 func (c *MovieMakersController) GetAll(ctx *gin.Context) {
-	ucOutput := c.getMovieMakersUseCase.Perform()
+	ucOutput, err := c.getMovieMakersUseCase.Perform()
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	ctx.IndentedJSON(http.StatusOK, ucOutput)
+	return
 }
