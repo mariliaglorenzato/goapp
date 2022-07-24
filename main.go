@@ -1,29 +1,32 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	controllers "goapp/controllers"
-	"goapp/persistence"
-	"goapp/usecases"
+	persistence "goapp/persistence"
+	usecases "goapp/usecases"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	//load database
+	// load database
 	GormImpl := persistence.NewGormImpl()
 
-	//load repository
+	// load repository
 	repository := persistence.NewRepository(GormImpl.DB)
 
-	//load use cases
+	// load use cases
 	getMovieMakersUseCase := usecases.NewGetMovieMakersUseCase(repository)
 
-	//load controllers
+	// load controllers
 	movieMakersController := controllers.NewMovieMakersController(getMovieMakersUseCase)
 
-	//load routes
+	// load routes
 	router := gin.Default()
 	router.GET("/moviemakers", movieMakersController.GetAll)
 
-	router.Run("localhost:8080")
+	router.Run(fmt.Sprintf(":%v", os.Getenv("PORT")))
 }
