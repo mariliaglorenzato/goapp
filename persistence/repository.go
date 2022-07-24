@@ -24,3 +24,12 @@ func (r *Repository) GetAllMovieMakers() ([]*domain.MovieMaker, error) {
 
 	return movieMakers, nil
 }
+
+func (r *Repository) CreateMovieMaker(movieMaker *domain.MovieMaker) (*domain.MovieMaker, error) {
+	result := r.db.Create(&movieMaker)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return movieMaker, nil
+}

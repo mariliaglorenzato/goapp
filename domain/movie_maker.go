@@ -1,7 +1,7 @@
 package domain
 
 type MovieMaker struct {
-	ID         int64   `json:"id" gorm:"primary_key"`
+	ID         int64   `json:"id" gorm:"primary_key,autoIncrement"`
 	FullName   string  `json:"name"`
 	ArtistName *string `json:"artist_name"`
 	// BirthDate  time.Time `json: birth_date`
