@@ -2,14 +2,18 @@ package main
 
 import (
 	controllers "goapp/controllers"
+	"goapp/persistence"
 	"goapp/usecases"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	//load database
+	GormImpl := persistence.NewGormImpl()
+
 	//load use cases
-	getMovieMakersUseCase := usecases.NewGetMovieMakersUseCase()
+	getMovieMakersUseCase := usecases.NewGetMovieMakersUseCase(GormImpl.DB)
 
 	//load controllers
 	movieMakersController := controllers.NewMovieMakersController(getMovieMakersUseCase)

@@ -5,16 +5,20 @@ import (
 
 	domain "goapp/domain"
 	"goapp/usecases/interfaces"
+
+	"github.com/jinzhu/gorm"
 )
 
-type GetMovieMakersUseCase struct{}
-
-func NewGetMovieMakersUseCase() interfaces.IGetMovieMakersUseCase {
-	return &GetMovieMakersUseCase{}
+type GetMovieMakersUseCase struct {
+	DB *gorm.DB
 }
 
-func (usecase *GetMovieMakersUseCase) Perform() []domain.MovieMakers {
-	var movieMakers = []domain.MovieMakers{
+func NewGetMovieMakersUseCase(database *gorm.DB) interfaces.IGetMovieMakersUseCase {
+	return &GetMovieMakersUseCase{DB: database}
+}
+
+func (usecase *GetMovieMakersUseCase) Perform() []domain.MovieMaker {
+	var movieMakers = []domain.MovieMaker{
 		{
 			ID: 1, FullName: "John Coltrane", ArtWorks: []domain.ArtWork{
 				{ID: 1, Name: "Blue Train", Description: "Test.....", PublishedAt: time.Now()},
