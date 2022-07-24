@@ -3,7 +3,8 @@ Simple Go Lang application
 
 ### To init the project: 
 
-``` go init . 
+``` 
+go init . 
 ```
 ### To run the project: 
 
